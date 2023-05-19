@@ -9,7 +9,7 @@ REST API endpoint service for task-management app prototype.
 5. Run ```npm run dev``` to run the app locally.
 6. Try making api calls to the REST api endpoint for users(authentication and authrization - sign up, sign in and sign out) through POSTMAN for manual testing. Refer to the Postman collection.
 7. Try making api calls to the REST api endpoint for tasks through POSTMAN for manual testing. Refer to the Postman collection.
-8. Run ```npm run test``` for automated unit testing. 
+8. Run ```npm run test``` to run automated unit testing suites. 
 9. Monitor the outputs on the terminal that is running this Express server app for logging info on the api requests and errors.
 
 ## Main Features:

@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const db = require("./models/");
+const authConfig = require("./config/auth.config");
+const authRoutes = require("./routes/auth.routes");
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
@@ -33,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({  extended: true }));
 
 /** Routes */
+authRoutes(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const db = require("../models");
-const config = require("../config/auth.config");
+
+const { users: UserModel } = require("../models");
+const config = require("../../config/auth.config");
 const { 
   RESOURCE_TYPES, ROLES_LIST,
  } = require("../utils/resource_utils");
@@ -12,7 +13,6 @@ const {
   logRequest, logRecord, logRecords, logResponse,
 } = require("../utils/logger_utils");
 
-const UserModel = db.users;
 const { USER } = RESOURCE_TYPES;
 const {
   USER_REGISTRATION_SUCCESS,
@@ -23,6 +23,8 @@ const {
   INTERNAL_SERVER, NOT_FOUND, UNAUTHORIZED,
 } = HTTP_ERRORS;
 
+
+/** New user sign up. */
 const signUp = async (req, res) => {
   const { username, firstName, lastName, password, role } = req.body;
   try {
@@ -40,6 +42,8 @@ const signUp = async (req, res) => {
   }
 };
 
+
+/** Existing user sign in. */
 const signIn = async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -77,9 +81,11 @@ const signIn = async (req, res) => {
   }
 };
 
+
+/** User sign out. */
 const signOut = async (req, res) => {
   try {
-    // Destroy JWT token from the key-val session datastore
+    // Destroy JWT token from the key-val session datastore.
 
     return res.status(USER_SIGN_OUT_SUCCESS.statusCode).send(USER_SIGN_OUT_SUCCESS.getMessage());
   } catch (error) {

@@ -2,6 +2,7 @@ const { verifySignUp } = require("../middlewares");
 const authController = require("../controllers/auth.controller");
 
 module.exports = (app) => {
+  /** Middleware for this set of routes */
   app.use((req, res, next) => {
     res.header(
       "Access-Control-Allow-Headers",
@@ -10,6 +11,7 @@ module.exports = (app) => {
     next();
   });
 
+  /** HTTP methods handler controllers */
   app.post(
     "/api/auth/signup",
     [

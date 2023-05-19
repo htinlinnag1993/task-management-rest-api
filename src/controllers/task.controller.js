@@ -1,4 +1,5 @@
 const sequelize = require("sequelize");
+
 const { tasks: TaskModel } = require("../models");
 const { 
   RESOURCE_TYPES, ROLES,
@@ -13,20 +14,18 @@ const {
 const { TASK } = RESOURCE_TYPES;
 const { MANAGER, TECHNICIAN } = ROLES;
 const { 
-  OK, 
-  PERFORM_SUCCESS, UPDATE_SUCCESS, 
-  DELETE_SUCCESS,
+  OK, PERFORM_SUCCESS, UPDATE_SUCCESS, DELETE_SUCCESS,
 } = HTTP_SUCCESSES;
 const { 
-  FAILURE_400, UNAUTHORIZED, 
-  FORBIDDEN, NOT_FOUND, INTERNAL_SERVER,
+  FAILURE_400, UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER,
 } = HTTP_ERRORS;
 const {
   NOT_AN_OWNER_OR_A_MANAGER, NOT_A_TECHNICIAN, NOT_AN_OWNER, NOT_A_MANAGER, 
   BAD_REQUEST, LIST_ALL_FAIL, UPDATE_FAIL, DELETE_FAIL,
 } = ERROR_TYPES;
 
-// Retrieve a task as the task owner technician or a manager.
+
+/** Retrieve a task as the task owner technician or a manager. */
 const getTask = async (req, res) => {
   const { taskId } = req.params;
   const { id: userId, role } = req.user;
@@ -54,7 +53,7 @@ const getTask = async (req, res) => {
 };
 
 
-// Retrieve all tasks as the task owner technician or a manager.
+/** Retrieve all tasks as the task owner technician or a manager. */
 const listTasks = async(req, res) => {
   const { name, status } = req.query;
   const { id: userId, role } = req.user;
@@ -87,7 +86,7 @@ const listTasks = async(req, res) => {
 };
 
 
-// Create & save a new task as a technician.
+/** Create & save a new task as a technician. */
 const createTask = async (req, res) => {
   const { 
     body: { 
@@ -122,7 +121,7 @@ const createTask = async (req, res) => {
 };
 
 
-// Update a task by the id in the request as the task owner technician.
+/** Update a task by the id in the request as the task owner technician. */
 const updateTask = async (req, res) => {
   const {
     params: { taskId },
@@ -164,7 +163,7 @@ const updateTask = async (req, res) => {
 };
 
 
-// Perform a task as the task owner technician.
+/** Perform a task as the task owner technician. */
 const performTask = async (req, res) => {
   const { 
     params: {
@@ -172,6 +171,7 @@ const performTask = async (req, res) => {
     },
     user: {
       id: userId,
+      username,
       role,
     }
   } = req;
@@ -190,10 +190,12 @@ const performTask = async (req, res) => {
         const taskInfo = task.dataValues;
         if (taskInfo.createdBy === userId) { // Correct task owner
           const result = await task.update(taskPerformed);
-          // Update successful
+          // Perform update successful
           if (result) {
+            console.log(`Task ${taskId} was performed by technician ${username} at ${taskPerformed.performedAt}.`);
+
             res.status(PERFORM_SUCCESS.statusCode).send(PERFORM_SUCCESS.getMessage(TASK));
-          } else { // Update not successful
+          } else { // Perform update not successful
             res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(TASK, taskId, UPDATE_FAIL));
           }
         } else { // Not an owner of the task
@@ -211,7 +213,7 @@ const performTask = async (req, res) => {
 };
 
 
-// Delete a task by the id as a manager
+/** Delete a task by the id as a manager. */
 const deleteTask = async (req, res) => {
   const { 
     params: { taskId },

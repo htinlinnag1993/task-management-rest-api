@@ -1,8 +1,20 @@
-const { DataTypes, UUIDV4 } = require("sequelize");
+const { Model, DataTypes, UUIDV4 } = require("sequelize");
 const { ROLE_TYPES } = require("./utils");
 
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
+  class User extends Model {
+    /** OneToMany association with Task */
+    static associate({Task}) {
+      this.hasMany(Task, {
+        foreignKey: "createdBy",
+        as: "tasks",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+    }
+  }
+
+  User.init({
     id: {
       field: 'user_id',
       type: DataTypes.UUID,
@@ -37,6 +49,8 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
   },{
+    sequelize, // connection
+    modelName: 'User',
     freezeTableName: true,
     timestamps: true,
     underscored: true,

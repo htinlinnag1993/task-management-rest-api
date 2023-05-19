@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, "./private.key"), { encoding: "utf8" });
-const publicKey = fs.readFileSync(path.resolve(__dirname, "./public.key"), { encoding: "utf8" });
+const privateKey = fs.readFileSync(path.resolve(__dirname, "./keys/private.key"), { encoding: "utf8" });
+const publicKey = fs.readFileSync(path.resolve(__dirname, "./keys/public.key"), { encoding: "utf8" });
 
 const signOptions = {
   issuer: "Htin",

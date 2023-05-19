@@ -4,6 +4,7 @@ const cors = require("cors");
 const db = require("./models/");
 const authConfig = require("./config/auth.config");
 const authRoutes = require("./routes/auth.routes");
+const taskRoutes = require("./routes/task.routes");
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
@@ -36,6 +37,7 @@ app.use(express.urlencoded({  extended: true }));
 
 /** Routes */
 authRoutes(app);
+taskRoutes(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

@@ -1,8 +1,18 @@
-const { DataTypes, UUIDV4 } = require("sequelize");
-const { TASK_STATUSES } = require("./utils");
+const { Model, UUIDV4 } = require("sequelize");
+const { TASK_STATUSES } = require("../utils/model_utils");
 
-module.exports = (sequelize, Sequelize) => {
-  const Task = sequelize.define("maintenance_task", {
+module.exports = (sequelize, {DataTypes}) => {
+  class Task extends Model {
+    /** ManyToOne association with User */
+    static associate({user}) {
+      this.belongsTo(user, {
+        foreignKey: "createdBy",
+        as: "user",
+      });
+    }
+  }
+
+  Task.init({
     id: {
       field: 'task_id',
       type: DataTypes.UUID,
@@ -45,11 +55,13 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true,
       defaultValue: null,
     },
-  }, {
+  },{
+    sequelize, // connection
+    modelName: 'task',
     freezeTableName: true,
     timestamps: true,
     underscored: true,
   });
-
+  
   return Task;
-};
+}

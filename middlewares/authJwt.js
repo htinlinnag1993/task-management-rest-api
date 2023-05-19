@@ -1,14 +1,15 @@
 const jwt = require("jsonwebtoken");
+
 const config = require("../config/auth.config");
-const { 
-  HTTP_ERRORS,
-} = require("../utils/http_utils");
+const { HTTP_ERRORS } = require("../utils/http_utils");
 
 const {
   UNAUTHORIZED,
   INTERNAL_SERVER,
 } = HTTP_ERRORS;
 
+
+/** User's JWT verification. */
 const verifyToken = (req, res, next) => {
   if (!req.headers.authorization) {
     return res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage());

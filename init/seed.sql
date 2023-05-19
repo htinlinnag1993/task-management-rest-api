@@ -37,7 +37,7 @@ VALUES
   ('0754fa98-efc5-11ed-8281-4b0432ed118d', 'leahl', '$2y$10$L18RWaeKjdMqlL.1s80wmuNfkr2Sih9qH3mb8Osll.W64VUv36LhK', 'Leah', 'L', 'technician');
 
 -- Populate tasks
-INSERT INTO maintenance_task
+INSERT INTO task
   (task_id, name, status, summary, created_by)
 VALUES
   (UUID(), 'Repair bedroom AC', 'new', 'Change AC filter', '0754fa95-efc5-11ed-8281-4b0432ed118d'),

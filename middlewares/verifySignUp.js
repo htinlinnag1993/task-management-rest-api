@@ -1,13 +1,10 @@
-const db = require("../models");
-const { 
-  HTTP_ERRORS, ERROR_TYPES 
-} = require("../utils/http_utils");
+const { user: UserModel } = require("../models");
+const { HTTP_ERRORS, ERROR_TYPES } = require("../utils/http_utils");
 const { RESOURCE_TYPES } = require("../utils/resource_utils"); 
 const {
   logRequest, logRecord, logRecords, logResponse
 } = require("../utils/logger_utils");
 
-const UserModel = db.users;
 const { USER } = RESOURCE_TYPES;
 const { DUPLICATE_USER } = ERROR_TYPES;
 const {
@@ -15,6 +12,8 @@ const {
   INTERNAL_SERVER,
 } = HTTP_ERRORS;
 
+
+/** Check duplicate username. */
 const checkDuplicateUsername = async (req, res, next) => {
   const { username } = req.body;
   try {

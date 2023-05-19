@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const { users: UserModel } = require("../models");
-const config = require("../../config/auth.config");
+const config = require("../config/auth.config");
 const { 
   RESOURCE_TYPES, ROLES_LIST,
  } = require("../utils/resource_utils");

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const config = require("../../config/auth.config");
+const config = require("../config/auth.config");
 const { HTTP_ERRORS } = require("../utils/http_utils");
 
 const {

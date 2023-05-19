@@ -2,9 +2,9 @@
   "name": "task-management-rest-api",
   "version": "1.0.0",
   "description": "Task management rest api with NodeJS, MySQL, Sequelize",
-  "main": "./src/server.js",
+  "main": "./server.js",
   "scripts": {
-    "dev": "nodemon ./src/server.js",
+    "dev": "nodemon ./server.js",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
   },
   "author": "Htin Linn Aung",

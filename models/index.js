@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "local";
-const dbConfig = require(`${__dirname}/../../config/db.config`)[env];
+const dbConfig = require(`${__dirname}/../config/config`)[env];
 const UserModel = require("./user.model.js");
 const TaskModel = require("./task.model.js");
 
@@ -55,7 +55,7 @@ const User = UserModel(sq, Sequelize);
 const Task = TaskModel(sq, Sequelize);
 db.users = User;
 db.tasks = Task;
-db.Sequelize = Sequelize;
 db.sequelize = sq;
+db.Sequelize = Sequelize;
 
 module.exports = db;

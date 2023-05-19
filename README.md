@@ -4,12 +4,13 @@ REST API endpoint service for task-management app prototype.
 ## Getting Started:
 1. Clone this repo.
 2. Run ```npm install```.
-3. Run ```npm run dev``` to run the app locally.
-4. Populate users and tasks in the local MySQL database manually. Refer to ```./init/seed.sql``` file.
-5. Try making api calls to the REST api endpoint for users(authentication and authrization - sign up, sign in and sign out) through POSTMAN for manual testing. Refer to the Postman collection.
-6. Try making api calls to the REST api endpoint for tasks through POSTMAN for manual testing. Refer to the Postman collection.
-7. Run ```npm run test``` for automated unit testing. 
-8. Monitor the outputs on the terminal that is running this Express server app for logging info on the api requests and errors.
+3. Populate users and tasks in the local MySQL database manually. Refer to ```./init/seed.sql``` file.
+4. Go to https://travistidwell.com/jsencrypt/demo/ and generate a pair of RSA private key and public key using **2048 bit** key size. Save each of them into its own file(private.key and public.key) under ```./src/config/keys/```.
+5. Run ```npm run dev``` to run the app locally.
+6. Try making api calls to the REST api endpoint for users(authentication and authrization - sign up, sign in and sign out) through POSTMAN for manual testing. Refer to the Postman collection.
+7. Try making api calls to the REST api endpoint for tasks through POSTMAN for manual testing. Refer to the Postman collection.
+8. Run ```npm run test``` for automated unit testing. 
+9. Monitor the outputs on the terminal that is running this Express server app for logging info on the api requests and errors.
 
 ## Main Features:
 - Letting the technician:

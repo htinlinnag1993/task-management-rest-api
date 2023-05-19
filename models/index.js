@@ -3,10 +3,8 @@ const path = require("path");
 const Sequelize = require("sequelize");
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "local";
-const dbConfig = require(`${__dirname}/../config/config`)[env];
-const UserModel = require("./user.model.js");
-const TaskModel = require("./task.model.js");
+const env = process.env.NODE_ENV || "development";
+const dbConfig = require(`${__dirname}/../config/config.js`)[env];
 
 
 const db = {};
@@ -18,12 +16,8 @@ if (dbConfig.use_env_variable) {
   sq = new Sequelize(
     dbConfig.database,
     dbConfig.username,
-    dbConfig.password, {
-      host: dbConfig.host,
-      dialect: dbConfig.dialect,
-      operatorAliases: false,
-      pool: dbConfig.pool,
-    });
+    dbConfig.password, 
+    dbConfig);
 }
 
 sq.authenticate().then(() => {
@@ -32,29 +26,35 @@ sq.authenticate().then(() => {
   console.error('Unable to connect to the database: ', error);
 });
 
-/** Model reader */
-// fs.readdirSync(__dirname)
-//   .filter(
-//     (file) =>
-//       file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-//   )
-//   .forEach((file) => {
-//     const model = require(path.join(__dirname, file))(
-//       sequelize,
-//       Sequelize.DataTypes
-//     );
-//     db[model.name] = model;
-//   });
-// Object.keys(db).forEach((modelName) => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+/** Models reader
+ * Example:
+ * const UserModel = require("./user.js");
+ * const TaskModel = require("./task.js");
+ * const User = UserModel(sq, Sequelize);
+ * const Task = TaskModel(sq, Sequelize);
+ * db.users = User;
+ * db.tasks = Task;
+ */
+fs.readdirSync(__dirname)
+  .filter(
+    (file) =>
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+  )
+  .forEach((file) => {
+    console.log(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(
+      sq,
+      // Sequelize.DataTypes
+      Sequelize
+    );
+    db[model.name] = model;
+  });
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
-const User = UserModel(sq, Sequelize);
-const Task = TaskModel(sq, Sequelize);
-db.users = User;
-db.tasks = Task;
 db.sequelize = sq;
 db.Sequelize = Sequelize;
 

@@ -1,4 +1,4 @@
-const { users: UserModel } = require("../models");
+const { user: UserModel } = require("../models");
 const { HTTP_ERRORS, ERROR_TYPES } = require("../utils/http_utils");
 const { RESOURCE_TYPES } = require("../utils/resource_utils"); 
 const {

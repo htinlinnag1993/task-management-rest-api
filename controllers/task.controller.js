@@ -1,6 +1,6 @@
 const sequelize = require("sequelize");
 
-const { tasks: TaskModel } = require("../models");
+const { task: TaskModel } = require("../models");
 const { 
   RESOURCE_TYPES, ROLES,
 } = require("../utils/resource_utils");

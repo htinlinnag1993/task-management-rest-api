@@ -1,13 +1,13 @@
-const { Model, DataTypes, UUIDV4 } = require("sequelize");
-const { ROLE_TYPES } = require("./utils");
+const { Model, UUIDV4 } = require("sequelize");
+const { ROLE_TYPES } = require("../utils/model_utils");
 
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, { DataTypes }) => {
   class User extends Model {
     /** OneToMany association with Task */
-    static associate({Task}) {
-      this.hasMany(Task, {
+    static associate({task}) {
+      this.hasMany(task, {
         foreignKey: "createdBy",
-        as: "tasks",
+        as: "task",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
@@ -50,7 +50,7 @@ module.exports = (sequelize, Sequelize) => {
     },
   },{
     sequelize, // connection
-    modelName: 'User',
+    modelName: 'user',
     freezeTableName: true,
     timestamps: true,
     underscored: true,

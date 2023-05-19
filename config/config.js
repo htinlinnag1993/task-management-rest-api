@@ -8,6 +8,12 @@ module.exports = {
     host: process.env.MYSQL_DEV_HOST,
     port: process.env.MYSQL_DEV_PORT,
     dialect: 'mysql',
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   },
   test: {
     username: process.env.MYSQL_TEST_USER,
@@ -24,19 +30,5 @@ module.exports = {
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
     dialect: 'mysql',
-  },
-  local: {
-    username: process.env.MYSQL_LOCAL_USER || "htin-dev",
-    password: process.env.MYSQL_LOCAL_PASSWORD || "password",
-    database: process.env.MYSQL_LOCAL_DB_NAME || "task_management",
-    host: process.env.MYSQL_LOCAL_HOST || "localhost",
-    port: process.env.MYSQL_LOCAL_PORT || "3306",
-    dialect: 'mysql',
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
   },
 };

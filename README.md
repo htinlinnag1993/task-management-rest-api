@@ -70,3 +70,4 @@ Currently, this rest api has a unit-test coverage for the following:
 - **Dockerizing**: Containerize the whole app with a couple of different services(MySQL, NodeJS server & MongoDB or Redis service) within the container.
 - **JWT Authentication, Session Persistance & Invalidation**: Adding a session key-value pair datastore such as MongoDB or Redis for this.
 - **Database Seeding**: Seed the database using factory design pattern to seed the database for testing.
+- **Set up Linting, typescript & Pre-Commit/Pre-Submit Hooks on PullRequests for CI/CD**: Set up eslinting for code-styling, set up typescript support for type-checking and pre-Commit/pre-Submit hooks on pull requests for CI/CD. This static analysis will help us achieve less bugs, less runtime errors and less system runtime. We will have a better smoother CI/CD workflow and achieve higher availability in our system.

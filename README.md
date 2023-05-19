@@ -44,10 +44,7 @@ REST API endpoint service for task-management app prototype.
 - [ ] Create Kubernetes object files needed to deploy this application.
 
 
-
 ## Task Management REST API Endpoint Reference
-
-
 
 
 ## Authentication & Authorization:
@@ -55,6 +52,7 @@ REST API endpoint service for task-management app prototype.
 - Currently using authorization header with JWT and not storing JWT in any kind of session. The client can send the authorization JWT through authorization header. A better way would be using express-session and storing session on a datastore(preferrably key-value store such as Redis or MongoDB) on the server side.
 
 ## Logging
+
 
 ## Test Coverage
 Currently, this rest api has a unit-test coverage for the following:

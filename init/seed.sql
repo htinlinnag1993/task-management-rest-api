@@ -6,24 +6,24 @@ CREATE TABLE `task_management`.`user` (
   `first_name` VARCHAR(300) NOT NULL,
   `last_name` VARCHAR(300) NOT NULL,
   `role` ENUM('manager', 'technician') NOT NULL DEFAULT 'technician',
-  `created_at` DATETIME NOT NULL DEFAULT NOW(),
-  `updated_at` DATETIME ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT NOW(),
+  `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
+  `updated_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`user_id`));
 
--- Create maintenance_task table
-CREATE TABLE `task_management`.`maintenance_task` (
+-- Create maintenance_task tableuseruser
+CREATE TABLE `task_management`.`task` (
   `task_id` VARCHAR(36) NOT NULL,
   `name` VARCHAR(300) NOT NULL,
   `status` ENUM('new', 'in progress', 'complete') NOT NULL DEFAULT 'new',
   `summary` VARCHAR(2500) NULL,
   `created_by` VARCHAR(36) NOT NULL,
-  `performed_at` DATETIME NULL,
-  `completed_at` DATETIME NULL,
-  `created_at` DATETIME NOT NULL DEFAULT NOW(),
-  `updated_at` DATETIME ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT NOW(),
+  `performed_at` TIMESTAMP NULL,
+  `completed_at` TIMESTAMP NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
+  `updated_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT NOW(),
 	FOREIGN KEY (created_by)
 		REFERENCES user(user_id),
-  PRIMARY KEY (`task_id`));
+
 
 -- Populate users for the app
 INSERT INTO user

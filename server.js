@@ -13,6 +13,7 @@ var corsOptions = {
   origin: "http://localhost:8081",
 };
 const app = express();
+const server = require("http").Server(app);
 
 /** DB Initialization */
 const initializeDb = async () => {
@@ -43,7 +44,6 @@ app.listen(PORT, () => {
 });
 
 module.exports = {
-  server: app,
+  server,
+  app,
 };
-
-

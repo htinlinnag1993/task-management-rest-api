@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('task', {
-      id: {
+      taskId: {
         field: 'task_id',
         type: Sequelize.UUID,
         primaryKey: true,
@@ -35,24 +35,27 @@ module.exports = {
       },
       performedAt: {
         field: 'performed_at',
-        type: Sequelize.DATE,
+        type: "TIMESTAMP",
         allowNull: true,
         defaultValue: null,
       },
       completedAt: {
         field: 'completed_at',
-        type: Sequelize.DATE,
+        type: "TIMESTAMP",
         allowNull: true,
         defaultValue: null,
       },
       createdAt: {
-        field: 'completed_at',
+        field: 'created_at',
         allowNull: false,
-        type: Sequelize.DATE
+        type: "TIMESTAMP",
+        defaultValue: new Date(),
       },
       updatedAt: {
+        field: 'updated_at',
         allowNull: false,
-        type: Sequelize.DATE
+        type: "TIMESTAMP",
+        defaultValue: new Date(),
       }
     });
   },

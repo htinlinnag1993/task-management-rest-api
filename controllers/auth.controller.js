@@ -62,7 +62,7 @@ const signIn = async (req, res) => {
     }
 
     const signedInUser = {
-      id: user.dataValues.id,
+      userId: user.dataValues.userId,
       username: user.dataValues.username,
       role: user.dataValues.role,
     };
@@ -71,7 +71,7 @@ const signIn = async (req, res) => {
     // Save JWT token into the key-val session datastore
 
     return res.status(OK.statusCode).send({
-      id: user.id,
+      userId: user.userId,
       username: user.username,
       role: user.role,
       token,

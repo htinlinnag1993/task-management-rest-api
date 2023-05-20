@@ -1,6 +1,6 @@
 const sequelize = require("sequelize");
 
-const { task: TaskModel } = require("../models");
+const { task: TaskModel, user: UserModel } = require("../models");
 const { 
   RESOURCE_TYPES, ROLES,
 } = require("../utils/resource_utils");
@@ -25,19 +25,29 @@ const {
 } = ERROR_TYPES;
 
 
+const attributesToIncludeInResult = [
+  'taskId', 'name', 
+  'status', 'summary', 'createdBy',
+  'performedAt', 
+  'completedAt',
+];
+
 /** Retrieve a task as the task owner technician or a manager. */
 const getTask = async (req, res) => {
   const { taskId } = req.params;
-  const { id: userId, role } = req.user;
+  const { userId, role } = req.user;
   logRequest(req, TASK);
   try {
-    const { dataValues: task } = await TaskModel.findByPk(taskId);
+    const { dataValues: task } = await TaskModel.findByPk(
+      taskId,
+      { attributes: attributesToIncludeInResult }
+    );
     logRecord(task, req.method, TASK);
     // Task Found 
     if (task) {
       // Owner of the task or a manager
       if (task.createdBy === userId || role === MANAGER) {
-        res.status(OK.statusCode).send(task);
+        res.status(OK.statusCode).send({ data: task});
       }
       else {
         res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER_OR_A_MANAGER));
@@ -56,7 +66,7 @@ const getTask = async (req, res) => {
 /** Retrieve all tasks as the task owner technician or a manager. */
 const listTasks = async(req, res) => {
   const { name, status } = req.query;
-  const { id: userId, role } = req.user;
+  const { userId, role } = req.user;
   logRequest(req, TASK);
   const condition = {};
 
@@ -74,11 +84,18 @@ const listTasks = async(req, res) => {
 
   try {
     const list = await TaskModel.findAll({ 
+      attributes: attributesToIncludeInResult,
+      // include: {
+      //   model: UserModel,
+      //   as: "user"
+      // },
       where: condition
     });
     logRecords(list, req.method, TASK);
-    res.status(OK.statusCode).send(list);
+    const taskList = list.map(({ dataValues }) => dataValues); 
+    res.status(OK.statusCode).send({ data: taskList });
   } catch (error) {
+    console.log(error);
     res.status(FAILURE_400.statusCode).send(error.message || FAILURE_400.getMessage(TASK, null, LIST_ALL_FAIL));
   } finally {
     logResponse(req.method, TASK);
@@ -94,7 +111,7 @@ const createTask = async (req, res) => {
       summary
     },
     user: { 
-      id: userId, 
+      userId, 
       role,
     }
   } = req;
@@ -110,8 +127,11 @@ const createTask = async (req, res) => {
   
     const task = { name, summary, createdBy: userId };
     try {
-      const data = await TaskModel.create(task);
-      res.send(data);
+      const data = await TaskModel.create(
+        task,
+        { fields: attributesToIncludeInResult }
+      );
+      res.send({data});
     } catch (error) {
       res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK));
     } finally {
@@ -126,7 +146,7 @@ const updateTask = async (req, res) => {
   const {
     params: { taskId },
     user: {
-      id: userId,
+      userId,
       role,
     },
     body,
@@ -170,7 +190,7 @@ const performTask = async (req, res) => {
       taskId 
     },
     user: {
-      id: userId,
+      userId,
       username,
       role,
     }

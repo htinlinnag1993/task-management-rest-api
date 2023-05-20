@@ -13,7 +13,7 @@ module.exports = (sequelize, {DataTypes}) => {
   }
 
   Task.init({
-    id: {
+    taskId: {
       field: 'task_id',
       type: DataTypes.UUID,
       primaryKey: true,
@@ -45,13 +45,13 @@ module.exports = (sequelize, {DataTypes}) => {
     },
     performedAt: {
       field: 'performed_at',
-      type: DataTypes.DATE,
+      type: "TIMESTAMP",
       allowNull: true,
       defaultValue: null,
     },
     completedAt: {
-      field: 'completed_at',
-      type: DataTypes.DATE,
+      field: "completed_at",
+      type: "TIMESTAMP",
       allowNull: true,
       defaultValue: null,
     },

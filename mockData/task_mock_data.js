@@ -1,0 +1,33 @@
+module.exports = [
+  {
+    task_id: '2d83006c-f68e-11ed-9f7e-5fb260cad5cc',
+    name: 'Repair bedroom AC',
+    status: 'new',
+    summary: 'Change AC filter',
+    created_by: '0754fa96-efc5-11ed-8281-4b0432ed118d',
+    performed_at: null,
+    completed_at: null,
+    created_at: new Date(),
+    updated_at: new Date(),
+  },{
+    task_id: '2d8318d6-f68e-11ed-9f7e-5fb260cad5cc',
+    name: 'Repair bathroom sink',
+    status: 'complete',
+    summary: 'Add sealant',
+    created_by: '0754fa96-efc5-11ed-8281-4b0432ed118d',
+    performed_at: null,
+    completed_at: null,
+    created_at: new Date(),
+    updated_at: new Date(),
+  },{
+    task_id: '2d831aac-f68e-11ed-9f7e-5fb260cad5cc',
+    name: 'Repair smoke detector',
+    status: 'new',
+    summary: 'Change battery',
+    created_by: '0754fa97-efc5-11ed-8281-4b0432ed118d',
+    performed_at: null,
+    completed_at: null,
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+];

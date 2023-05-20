@@ -64,12 +64,12 @@ An unfinished logger is used for logging request in the terminal. The plan is to
 
 ## Test Coverage
 Currently, this rest api has a unit-test coverage on both success & fail cases for the following:
-- [*] **See a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
-- [*] **Create a new task** as these roles: *a manager, a non-owner technician & the task owner technician*.
-- [*] **Update an existing task** as these roles: *a manager, a non-owner technician & the task owner technician*.
-- [*] **Perform a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
-- [*] **See all tasks** as these roles: *a manager & the task owner technician*.
-- [*] **Delete a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
+- [x] **See a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
+- [x] **Create a new task** as these roles: *a manager, a non-owner technician & the task owner technician*.
+- [x] **Update an existing task** as these roles: *a manager, a non-owner technician & the task owner technician*.
+- [x] **Perform a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
+- [x] **See all tasks** as these roles: *a manager & the task owner technician*.
+- [x] **Delete a task** as these roles: *a manager, a non-owner technician & the task owner technician*.
 
 ## Next Steps:
 ### Part of the Problem Requirements:

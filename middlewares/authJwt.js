@@ -11,24 +11,44 @@ const {
 
 /** User's JWT verification. */
 const verifyToken = (req, res, next) => {
+  logRequest(req, USER);
+  let statusCode;
+  let resBody;
+
+  // Invalid Authorization header
   if (!req.headers.authorization) {
-    return res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage());
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage();
+    logResponse(statusCode, resBody, USER);
+    res.status(statusCode).send(resBody);
   }
+
   const token = req.headers["authorization"].split(" ")[1];
+  // Invalid token
   if (!token) {
-    return res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage());
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage();
+    logResponse(statusCode, resBody, USER);
+    res.status(statusCode).send(resBody);
   }
+
   try {
     const decoded = jwt.verify(token, config.publicKey);
     req.user = decoded.user;
     next();
   } catch (error) {
-    return res.status(INTERNAL_SERVER.statusCode).sende(error.message || INTERNAL_SERVER.getMessage());
+    console.error(error);
+    statusCode = INTERNAL_SERVER.statusCode;
+    resBody = error.message || INTERNAL_SERVER.getMessage();
+    logResponse(statusCode, resBody, USER);
+    res.status(statusCode).send(resBody);
   }
 };
+
 
 const authJwt = {
   verifyToken,
 };
+
 
 module.exports = authJwt;

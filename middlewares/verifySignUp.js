@@ -15,22 +15,37 @@ const {
 
 /** Check duplicate username. */
 const checkDuplicateUsername = async (req, res, next) => {
+  logRequest(req, USER);
+  let statusCode;
+  let resBody;
+
   const { username } = req.body;
   try {
     let user = await UserModel.findOne({
       where: { username }
     });
+
+    // username already exists
     if (user) {
-      return res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(USER, null, DUPLICATE_USER));
+      statusCode = FAILURE_400.statusCode;
+      resBody = FAILURE_400.getMessage(USER, null, DUPLICATE_USER);
+      logResponse(statusCode, resBody, USER);
+      res.status(statusCode).send(resBody);
+    } else { // new user
+      next();
     }
-    next();
   } catch (error) {
-    return res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(USER, username));
+    console.error(error);
+    statusCode = INTERNAL_SERVER.statusCode;
+    resBody = error.message || INTERNAL_SERVER.getMessage(USER, username);
+    return res.status(statusCode).send(resBody);
   }
 };
+
 
 const verifySignUp = {
   checkDuplicateUsername,
 };
+
 
 module.exports = verifySignUp;

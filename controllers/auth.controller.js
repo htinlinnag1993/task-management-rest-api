@@ -26,73 +26,114 @@ const {
 
 /** New user sign up. */
 const signUp = async (req, res) => {
-  const { username, firstName, lastName, password, role } = req.body;
+  logRequest(req, USER);
+  let statusCode;
+  let resBody;
+
+  const { username, firstName, lastName, password, role, route } = req.body;
+  
   try {
     const user = await UserModel.create({
       username,
       firstName, lastName,
       password: bcrypt.hashSync(password, 10),
     });
+    logRecord(user, req.method, USER);
+    
     if (role & ROLES_LIST.includes(role)) {
       const result = user.setRole(role);
     }
-    res.status(USER_REGISTRATION_SUCCESS.statusCode).send(USER_REGISTRATION_SUCCESS.getMessage());
+
+    statusCode = USER_REGISTRATION_SUCCESS.statusCode;
+    resBody = USER_REGISTRATION_SUCCESS.getMessage();
   } catch (error) {
-    res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(USER));
+    console.error(error);
+    statusCode = INTERNAL_SERVER.statusCode;
+    resBody = error.message || INTERNAL_SERVER.getMessage(USER);
+  } finally {
+    logResponse(statusCode, resBody, USER);
+    res.status(statusCode).send(resBody);
   }
 };
 
 
 /** Existing user sign in. */
 const signIn = async (req, res) => {
+  logRequest(req, USER);
+  let statusCode;
+  let resBody;
+
   const { username, password } = req.body;
+
   try {
     const user = await UserModel.findOne({ 
       where: { username },
     });
+    logRecord(user, req.method, USER);
+
+    // User not found
     if (!user) {
-      return res.status(NOT_FOUND.statusCode).send(NOT_FOUND.getMessage(USER, username));
+      statusCode = NOT_FOUND.statusCode;
+      resBody = NOT_FOUND.getMessage(USER, username);
+    } else { // User found
+      const passwordIsValid = bcrypt.compareSync(
+        password,
+        user.password
+      );
+
+      // Incorrect Password
+      if (!passwordIsValid) {
+        statusCode = UNAUTHORIZED.statusCode;
+        resBody = UNAUTHORIZED.getMessage();
+      } else { // Correct Password
+        const signedInUser = {
+          userId: user.dataValues.userId,
+          username: user.dataValues.username,
+          role: user.dataValues.role,
+        };
+    
+        const token = jwt.sign({ user: signedInUser }, config.privateKey, config.signOptions);
+        // Save JWT token into the key-val session datastore
+    
+        statusCode = OK.statusCode;
+        resBody = {
+          userId: user.userId,
+          username: user.username,
+          role: user.role,
+          token,
+        };
+      }
     }
-    const passwordIsValid = bcrypt.compareSync(
-      password,
-      user.password
-    );
-    if (!passwordIsValid) {
-      return res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage());
-    }
-
-    const signedInUser = {
-      userId: user.dataValues.userId,
-      username: user.dataValues.username,
-      role: user.dataValues.role,
-    };
-
-    const token = jwt.sign({ user: signedInUser }, config.privateKey, config.signOptions);
-    // Save JWT token into the key-val session datastore
-
-    return res.status(OK.statusCode).send({
-      userId: user.userId,
-      username: user.username,
-      role: user.role,
-      token,
-    });
   } catch (error) {
-    return res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(USER, username));
+    console.error(error);
+    statusCode = INTERNAL_SERVER.statusCode;
+    resBody = error.message || INTERNAL_SERVER.getMessage(USER, username);
+  } finally {
+    logResponse(statusCode, resBody, USER);
+    return res.status(statusCode).send(resBody);
   }
 };
 
 
 /** User sign out. */
 const signOut = async (req, res) => {
+  logRequest(req, USER);
+  let statusCode;
+  let resBody;
+  
   try {
     // Destroy JWT token from the key-val session datastore.
 
-    return res.status(USER_SIGN_OUT_SUCCESS.statusCode).send(USER_SIGN_OUT_SUCCESS.getMessage());
+    statusCode = USER_SIGN_OUT_SUCCESS.statusCode;
+    resBody = USER_SIGN_OUT_SUCCESS.getMessage();
+    logResponse(statusCode, resBody, USER);
+    return res.status(statusCode).send(resBody);
   } catch (error) {
+    console.error(error);
     this.next(error);
-    console.log(error);
   }
 }
+
 
 module.exports = {
   signUp,

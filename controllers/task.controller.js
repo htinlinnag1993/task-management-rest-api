@@ -34,40 +34,54 @@ const attributesToIncludeInResult = [
 
 /** Retrieve a task as the task owner technician or a manager. */
 const getTask = async (req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+
   const { taskId } = req.params;
   const { userId, role } = req.user;
-  logRequest(req, TASK);
+
   try {
     const { dataValues: task } = await TaskModel.findByPk(
       taskId,
       { attributes: attributesToIncludeInResult }
     );
     logRecord(task, req.method, TASK);
+
     // Task Found 
     if (task) {
       // Owner of the task or a manager
       if (task.createdBy === userId || role === MANAGER) {
-        res.status(OK.statusCode).send({ data: task});
+        statusCode = OK.statusCode;
+        resBody = { data: task };
       }
       else {
-        res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER_OR_A_MANAGER));
+        statusCode = UNAUTHORIZED.statusCode;
+        resBody = UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER_OR_A_MANAGER);
       }
     } else {
-      res.status(NOT_FOUND.statusCode).send(NOT_FOUND.getMessage(TASK, taskId));
+      statusCode = NOT_FOUND.statusCode;
+      resBody = NOT_FOUND.getMessage(TASK, taskId);
     }
   } catch (error) {
-    res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK, taskId));
+    console.log(error);
+    statusCode = INTERNAL_SERVER.statusCode;
+    resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
   } finally {
-    logResponse(req.method, TASK);
+    logResponse(statusCode, resBody, TASK);
+    res.status(statusCode).send(resBody);
   }
 };
 
 
 /** Retrieve all tasks as the task owner technician or a manager. */
 const listTasks = async(req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+
   const { name, status } = req.query;
   const { userId, role } = req.user;
-  logRequest(req, TASK);
   const condition = {};
 
   // Not a manager. Then set the createdBy to the task owner id.
@@ -92,19 +106,26 @@ const listTasks = async(req, res) => {
       where: condition
     });
     logRecords(list, req.method, TASK);
-    const taskList = list.map(({ dataValues }) => dataValues); 
-    res.status(OK.statusCode).send({ data: taskList });
+    const taskList = list.map(({ dataValues }) => dataValues);
+    statusCode = OK.statusCode;
+    resBody = { data: taskList };
   } catch (error) {
-    console.log(error);
-    res.status(FAILURE_400.statusCode).send(error.message || FAILURE_400.getMessage(TASK, null, LIST_ALL_FAIL));
+    console.error(error);
+    statusCode = FAILURE_400.statusCode;
+    resBody = error.message || FAILURE_400.getMessage(TASK, null, LIST_ALL_FAIL);
   } finally {
-    logResponse(req.method, TASK);
+    logResponse(statusCode, resBody, TASK);
+    res.status(statusCode).send(resBody);
   }
 };
 
 
 /** Create & save a new task as a technician. */
 const createTask = async (req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+
   const { 
     body: { 
       name, 
@@ -115,27 +136,37 @@ const createTask = async (req, res) => {
       role,
     }
   } = req;
-  logRequest(req, TASK);
 
+  // User is not a technician
   if (role !== TECHNICIAN) {
-    res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN));
-  } else {
-    if (!name || !summary) {
-      res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(null, null, BAD_REQUEST));
-      return;
-    }
-  
-    const task = { name, summary, createdBy: userId };
-    try {
-      const data = await TaskModel.create(
-        task,
-        { fields: attributesToIncludeInResult }
-      );
-      res.send({data});
-    } catch (error) {
-      res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK));
-    } finally {
-      logResponse(req.method, TASK);
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN);
+  } else { // User is a technician
+
+    if (!name || !summary) { // name and summary are empty
+      statusCode = FAILURE_400.statusCode;
+      resBody = FAILURE_400.getMessage(null, null, BAD_REQUEST);
+      logResponse(statusCode, resBody, TASK);
+      res.status(statusCode).send(resBody);
+    } else {
+      const task = { name, summary, createdBy: userId };
+
+      try {
+        const data = await TaskModel.create(
+          task,
+          { fields: attributesToIncludeInResult }
+        );
+
+        statusCode = OK.statusCode;
+        resBody = {data};
+      } catch (error) {
+        console.error(error);
+        statusCode = INTERNAL_SERVER.statusCode;
+        resBody = error.message || INTERNAL_SERVER.getMessage(TASK);
+      } finally {
+        logResponse(statusCode, resBody, TASK);
+        res.status(statusCode).send(resBody);
+      }
     }
   }
 };
@@ -143,6 +174,10 @@ const createTask = async (req, res) => {
 
 /** Update a task by the id in the request as the task owner technician. */
 const updateTask = async (req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+  
   const {
     params: { taskId },
     user: {
@@ -151,33 +186,47 @@ const updateTask = async (req, res) => {
     },
     body,
   } = req;
-  logRequest(req, TASK);
+
+  // User is not a technician
   if (role !== TECHNICIAN) {
-    res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN));
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN);
   } else {
     try {
       const task = await TaskModel.findByPk(taskId);
+
       // Task found
       if (task) {
         const taskInfo = task.dataValues;
+
+         // Correct task owner
         if (taskInfo.createdBy === userId) { // Correct task owner
           const result = await task.update(body);
+          logRecord(result, req.method, TASK);
+
           // Update successful
           if (result) {
-            res.status(UPDATE_SUCCESS.statusCode).send(UPDATE_SUCCESS.getMessage(TASK));
+            statusCode = UPDATE_SUCCESS.statusCode;
+            resBody = UPDATE_SUCCESS.getMessage(TASK);
           } else { // Update not successful
-            res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(TASK, taskId, UPDATE_FAIL));
+            statusCode = FAILURE_400.statusCode;
+            resBody = FAILURE_400.getMessage(TASK, taskId, UPDATE_FAIL);
           }
         } else { // Not an owner of the task
-          res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER));
+          statusCode = UNAUTHORIZED.statusCode;
+          resBody = UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER);
         }
       } else { // Task not found
-        res.status(NOT_FOUND.statusCode).send(NOT_FOUND.getMessage(TASK, taskId));
+        statusCode = NOT_FOUND.statusCode;
+        resBody = NOT_FOUND.getMessage(TASK, taskId);
       }
     } catch (error) {
-      res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK, taskId));
+      console.error(error);
+      statusCode = INTERNAL_SERVER.statusCode;
+      resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
     } finally {
-      logResponse(req.method, TASK);
+      logResponse(statusCode, resBody, TASK);
+      res.status(statusCode).send(resBody);
     }
   }
 };
@@ -185,6 +234,10 @@ const updateTask = async (req, res) => {
 
 /** Perform a task as the task owner technician. */
 const performTask = async (req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+
   const { 
     params: {
       taskId 
@@ -195,9 +248,11 @@ const performTask = async (req, res) => {
       role,
     }
   } = req;
-  logRequest(req, TASK);
+
+  // User is not a technician
   if (role !== TECHNICIAN) {
-    res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN));
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage(null, null, NOT_A_TECHNICIAN);
   } else {
     const taskPerformed = {
       status: "complete",
@@ -205,29 +260,40 @@ const performTask = async (req, res) => {
     };
     try {
       const task = await TaskModel.findByPk(taskId);
+      logRecord(task, req.method, TASK);
+
       // Task found
       if (task) {
         const taskInfo = task.dataValues;
         if (taskInfo.createdBy === userId) { // Correct task owner
           const result = await task.update(taskPerformed);
+          logRecord(result, req.method, TASK);
+
           // Perform update successful
           if (result) {
             console.log(`Task ${taskId} was performed by technician ${username} at ${taskPerformed.performedAt}.`);
 
-            res.status(PERFORM_SUCCESS.statusCode).send(PERFORM_SUCCESS.getMessage(TASK));
+            statusCode = PERFORM_SUCCESS.statusCode;
+            resBody = PERFORM_SUCCESS.getMessage(TASK);
           } else { // Perform update not successful
-            res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(TASK, taskId, UPDATE_FAIL));
+            statusCode = FAILURE_400.statusCode;
+            resBody = FAILURE_400.getMessage(TASK, taskId, UPDATE_FAIL);
           }
         } else { // Not an owner of the task
-          res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER));
+          statusCode = FAILURE_400.statusCode;
+          resBody = UNAUTHORIZED.getMessage(TASK, taskId, NOT_AN_OWNER);
         }
       } else { // Task not found
-        res.status(NOT_FOUND.statusCode).send(NOT_FOUND.getMessage(TASK, taskId));
+        statusCode = NOT_FOUND.statusCode;
+        resBody = NOT_FOUND.getMessage(TASK, taskId);
       }
     } catch (error) {
-      res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK, taskId));
+      console.error(error);
+      statusCode = INTERNAL_SERVER.statusCode;
+      resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
     } finally {
-      logResponse(req.method, TASK);
+      logResponse(statusCode, resBody, TASK);
+      res.status(statusCode).send(resBody);
     }
   }
 };
@@ -235,32 +301,46 @@ const performTask = async (req, res) => {
 
 /** Delete a task by the id as a manager. */
 const deleteTask = async (req, res) => {
+  logRequest(req, TASK);
+  let statusCode;
+  let resBody;
+
   const { 
     params: { taskId },
     user: { 
       role,
     }
   } = req;
-  logRequest(req, TASK);
+
+  // User is not a manager
   if (role !== MANAGER) {
-    res.status(UNAUTHORIZED.statusCode).send(UNAUTHORIZED.getMessage(TASK, taskId, NOT_A_MANAGER));
+    statusCode = UNAUTHORIZED.statusCode;
+    resBody = UNAUTHORIZED.getMessage(TASK, taskId, NOT_A_MANAGER);
   } else {
     try {
       const num = await TaskModel.destroy({
         where: { task_id: taskId },
       });
+      logRecord(num, req.method, TASK);
+
       if (num == 1) {
-        res.status(DELETE_SUCCESS.statusCode).send(DELETE_SUCCESS.getMessage(TASK));
+        statusCode = DELETE_SUCCESS.statusCode;
+        resBody = DELETE_SUCCESS.getMessage(TASK);
       } else {
-        res.status(FAILURE_400.statusCode).send(FAILURE_400.getMessage(TASK, taskId, DELETE_FAIL));
+        statusCode = FAILURE_400.statusCode;
+        resBody = FAILURE_400.getMessage(TASK, taskId, DELETE_FAIL);
       }
     } catch (error) {
-      res.status(INTERNAL_SERVER.statusCode).send(error.message || INTERNAL_SERVER.getMessage(TASK, taskId));
+      console.error(error);
+      statusCode = INTERNAL_SERVER.statusCode;
+      resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
     } finally {
-      logResponse(req.method, TASK);
+      logResponse(statusCode, resBody, TASK);
+      res.status(statusCode).send(resBody);
     }
   }
 };
+
 
 module.exports = {
   getTask,

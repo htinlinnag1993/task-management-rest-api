@@ -95,6 +95,7 @@ Currently, this rest api has a unit-test coverage on both success & fail cases f
 
 ### Extra for Scability, Readability, Maintability & Reusability of the Codebase & the System:
 
+-   **Add Global Error Handler & Catcher**: Refactor controllers logic a bit to extract several business logics (for task) out to their own middlewares, and then add a global error handler/catcher for any unexpected uncaught errors in our http server during runtime.
 -   **Add Validation on the Request**: Add data validation on the incoming requests before processing the request using validator library such as **Joi**.
 -   **JWT Authentication, Session Persistance & Invalidation**:
     -   Adding a session key-value pair datastore such as **MongoDB** or **Redis** for this.

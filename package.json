@@ -1,34 +1,41 @@
 {
-  "name": "task-management-rest-api",
-  "version": "1.0.0",
-  "description": "Task management rest api with NodeJS, MySQL, Sequelize",
-  "main": "./server.js",
-  "scripts": {
-    "dev-with-split-log": "nodemon ./server.js > main.log 2> error.log",
-    "dev-with-log": "nodemon ./server.js > > app.log 2>&1",
-    "test": "cross-env NODE_ENV=test mocha ./test/*",
-    "pretest": "cross-env NODE_ENV=test npm run db:reset",
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all --seeders-path ./seeders/test",
-    "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create"
-  },
-  "author": "Htin Linn Aung",
-  "license": "MIT",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "chai": "^4.3.7",
-    "chai-http": "^4.3.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mocha": "^10.2.0",
-    "mysql2": "^3.3.1",
-    "sequelize": "^6.31.1",
-    "supertest": "^6.3.3",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "nodemon": "^2.0.22"
-  }
+    "name": "task-management-rest-api",
+    "version": "1.0.0",
+    "description": "Task management rest api with NodeJS, MySQL, Sequelize",
+    "main": "./server.js",
+    "scripts": {
+        "dev-with-split-log": "nodemon ./server.js > main.log 2> error.log",
+        "dev-with-log": "nodemon ./server.js > > app.log 2>&1",
+        "test": "cross-env NODE_ENV=test mocha ./test/* --watch",
+        "pretest": "cross-env NODE_ENV=test npm run db:reset",
+        "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all --seeders-path ./seeders/test",
+        "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "author": "Htin Linn Aung",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.0",
+        "mysql2": "^3.3.1",
+        "sequelize": "^6.31.1",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "chai-http": "^4.3.0",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.41.0",
+        "eslint-config-prettier": "^8.8.0",
+        "mocha": "^10.2.0",
+        "nodemon": "^2.0.22",
+        "prettier": "^2.8.8",
+        "supertest": "^6.3.3"
+    }
 }

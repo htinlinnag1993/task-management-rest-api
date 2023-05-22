@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const db = require("./models");
 const routes = require("./routes");
+const { logInfo, logError } = require("./utils/logger_utils");
 
 /** Express App initialization */
 const PORT = process.env.NODE_APP_PORT || 8080;
@@ -19,13 +20,13 @@ const initializeDb = async () => {
     try {
         // In Production, use this:
         await db.sequelize.sync();
-        console.log("Synced db.");
+        logInfo("Synced db.");
 
         // Only for dev:
         // await db.sequelize.sync({ force: true });
-        // console.log("Drop and re-sync db.");
+        // logInfo("Drop and re-sync db.");
     } catch (error) {
-        console.error("Failed to sync db: " + error.message);
+        logError("Failed to sync db: " + error.message);
     }
 };
 initializeDb();
@@ -39,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 routes(app);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    logInfo(`Server is running on port ${PORT}.`);
 });
 
 module.exports = {

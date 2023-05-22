@@ -12,6 +12,8 @@ const {
     logRecord,
     logRecords,
     logResponse,
+    logError,
+    logInfo,
 } = require("../utils/logger_utils");
 
 const { TASK } = RESOURCE_TYPES;
@@ -73,7 +75,7 @@ const getTask = async (req, res) => {
             resBody = NOT_FOUND.getMessage(TASK, taskId);
         }
     } catch (error) {
-        console.log(error);
+        logError(error);
         statusCode = INTERNAL_SERVER.statusCode;
         resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
     } finally {
@@ -118,7 +120,7 @@ const listTasks = async (req, res) => {
         statusCode = OK.statusCode;
         resBody = { data: taskList };
     } catch (error) {
-        console.error(error);
+        logError(error);
         statusCode = FAILURE_400.statusCode;
         resBody =
             error.message || FAILURE_400.getMessage(TASK, null, LIST_ALL_FAIL);
@@ -164,7 +166,7 @@ const createTask = async (req, res) => {
                 statusCode = OK.statusCode;
                 resBody = { data };
             } catch (error) {
-                console.error(error);
+                logError(error);
                 statusCode = INTERNAL_SERVER.statusCode;
                 resBody = error.message || INTERNAL_SERVER.getMessage(TASK);
             } finally {
@@ -234,7 +236,7 @@ const updateTask = async (req, res) => {
                 resBody = NOT_FOUND.getMessage(TASK, taskId);
             }
         } catch (error) {
-            console.error(error);
+            logError(error);
             statusCode = INTERNAL_SERVER.statusCode;
             resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
         } finally {
@@ -278,7 +280,9 @@ const performTask = async (req, res) => {
 
                     // Perform update successful
                     if (result) {
-                        console.log(
+                        // Notifying the manager that the technician has performed the task.
+                        // TODO: Replace this with non-blocking notification system (preferrably using message queue) 
+                        logInfo(
                             `Task ${taskId} was performed by technician ${username} at ${taskPerformed.performedAt}.`
                         );
 
@@ -308,7 +312,7 @@ const performTask = async (req, res) => {
                 resBody = NOT_FOUND.getMessage(TASK, taskId);
             }
         } catch (error) {
-            console.error(error);
+            logError(error);
             statusCode = INTERNAL_SERVER.statusCode;
             resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
         } finally {
@@ -349,7 +353,7 @@ const deleteTask = async (req, res) => {
                 resBody = FAILURE_400.getMessage(TASK, taskId, DELETE_FAIL);
             }
         } catch (error) {
-            console.error(error);
+            logError(error);
             statusCode = INTERNAL_SERVER.statusCode;
             resBody = error.message || INTERNAL_SERVER.getMessage(TASK, taskId);
         } finally {

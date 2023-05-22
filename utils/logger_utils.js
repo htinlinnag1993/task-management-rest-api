@@ -1,26 +1,51 @@
+const winston = require("winston");
+
+
 /** Constants */
-const LINE_BREAK = "--------------------";
-const INDENTATION = " --- ";
+const LOG_LEVELS = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  verbose: 4,
+  debug: 5,
+  silly: 6
+};
+
+
+/** Winston Logger Config */
+const logger = winston.createLogger({
+  levels: LOG_LEVELS,
+  level: 'debug',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json(),
+  ),
+  transports: [new winston.transports.File({ filename: './logs/combined.log' })],
+});
+
 
 /** Helpers */
 const formatNPrintRequestInfo = (
     { method, params, body, originalUrl },
     resourceType
 ) => {
-    console.info(LINE_BREAK);
-    console.info(
-        INDENTATION +
-            `Received: ${method} request to ${originalUrl} on ${resourceType}.`
-    );
-    console.info(INDENTATION + `Params: ${JSON.stringify(params)}.`);
-    console.info(INDENTATION + `Body: ${JSON.stringify(body)}.`);
+    const logMessage = {
+        type: "http request",
+        received: `${method} request to ${originalUrl} on ${resourceType}`,
+        params,
+        body,
+    };
+    logger.info(JSON.stringify(logMessage));
 };
 
 const formatNPrintResponseInfo = (statusCode, body) => {
-    console.info(LINE_BREAK);
-    console.info(INDENTATION + "Sending the following back: ");
-    console.info(INDENTATION + `Status Code: ${statusCode}.`);
-    console.info(INDENTATION + `Body: ${JSON.stringify(body)}.`);
+    const logMessage = {
+        type: "responst",
+        statusCode,
+        body,
+    };
+    logger.info(JSON.stringify(logMessage));
 };
 
 /** Logger */
@@ -32,17 +57,26 @@ const logResponse = (statusCode, body, resourceType) =>
 
 /** */
 const logRecord = (record, method, resourceType) => {
-    console.info(
-        `--- Record for ${method} request on ${resourceType}:`,
-        JSON.stringify(record)
-    );
+    const logMessage = {
+        method,
+        resourceType,
+        record: record,
+    };
+    logger.info(JSON.stringify(logMessage));
 };
 
 const logRecords = (list, method, resourceType) => {
-    console.info(
-        `--- ${method} request on ${resourceType} has found ${list.length} of records.`
-    );
+    const logMessage = {
+        method,
+        resourceType,
+        recordCount: list.length,
+    };
+    logger.info(JSON.stringify(logMessage));
 };
+
+const logError = (error) => winston.error(error);
+
+const logInfo = (info) => winston.info(info);
 
 /** ------ */
 
@@ -51,4 +85,6 @@ module.exports = {
     logRecord,
     logRecords,
     logResponse,
+    logError,
+    logInfo,
 };

@@ -5,6 +5,7 @@ const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const dbConfig = require(`${__dirname}/../config/config.js`)[env];
+const { logInfo, logError } = require("../utils/logger_utils");
 
 const db = {};
 let sq;
@@ -22,10 +23,10 @@ if (dbConfig.use_env_variable) {
 
 sq.authenticate()
     .then(() => {
-        console.log("Connection has been established successfully.");
+        logInfo("Connection has been established successfully.");
     })
     .catch((error) => {
-        console.error("Unable to connect to the database: ", error);
+        logError("Unable to connect to the database: ", error);
     });
 
 /** Models reader
@@ -45,7 +46,7 @@ fs.readdirSync(__dirname)
             file.slice(-3) === ".js"
     )
     .forEach((file) => {
-        console.log(path.join(__dirname, file));
+        logInfo(path.join(__dirname, file));
         const model = require(path.join(__dirname, file))(
             sq,
             // Sequelize.DataTypes

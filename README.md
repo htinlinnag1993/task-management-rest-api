@@ -18,7 +18,7 @@ REST API endpoint service for task-management app prototype.
 
 3. Populate users and tasks in the local MySQL database manually. Refer to `./init/seed.sql` file for manual local testing through Postman in later step 6 & 7.
 4. Go to https://travistidwell.com/jsencrypt/demo/ and generate a pair of RSA private key and public key using **2048 bit** key size. Save each of them into its own file(private.key and public.key) under `./config/keys/`.
-5. Run either `npm run dev-with-split-log`(for logging logs & errors in 2 different local files) or `npm run dev-with-log`(for logging logs & errors in the same one local file) to run the app locally with logging implemented.
+5. Run either `npm run dev` run the app locally.
 6. Try making api calls to the user endpoint(authentication/authorization: sign up, sign in and sign out) through Postman for manual local testing. Refer to the Postman collection attached: `Task_Management_API.postman_collection.json`.
 7. Try making api calls to the task endpoint through Postman for manual local testing. Refer to the Postman collection attached: `Task_Management_API.postman_collection.json`.
 8. Run `npm run test` to run automated unit testing suite.
@@ -70,7 +70,7 @@ REST API endpoint service for task-management app prototype.
 
 ## Logging
 
-An unfinished logger is used for logging request in the terminal. The plan is to replace is it with NodeJS logging library such as **Winston**.
+**Winston** logging library is used to log info on all http requests, responses and errors. Currently, all the logs are written to a local `./logs/combined.log` file. It can also be reconfigured to save the logs into a remote store later on. Logging strategically enables us debug easier, monitor our system/api/app and create alerts for the team when needed. Setting up tools such as Logtail to manage our logs and aggregate insights to draw insights out would be the next step.
 
 ## Test Coverage
 
@@ -104,3 +104,4 @@ Currently, this rest api has a unit-test coverage on both success & fail cases f
     -   Set up set up typescript support for type-checking and pre-Commit/pre-Submit hooks on pull requests for CI/CD. This static analysis will help us achieve less bugs, less runtime errors and less system runtime. We will have a better smoother CI/CD workflow and achieve higher availability in our system.
 -   **Set Up Branch Protection Rules on Master Branch**: To protect master branch (and possibly future branches such as dev, pre-prod, etc.), set up rules & policies in place on GitHub for future collaboration.
 -   **Document our REST API using Swagger**: Document all of our endpoints and API using **Swagger**.
+-   **Log Aggregation Setup**: Logs are being saved to a local file now. It is better to centralize all logs to one remote place such as in the cloud. Setting up tools such as Logtail to manage our stored logs and aggregate insights to draw insights out would be the next step.

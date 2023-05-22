@@ -5,5 +5,5 @@ const generateUUIDV1 = () => uuidV1();
 /** ------ */
 
 module.exports = {
-  generateUUIDV1,
+    generateUUIDV1,
 };

@@ -1,630 +1,563 @@
 {
-	"info": {
-		"_postman_id": "77667831-4bb5-4cee-b14a-82a1ed7f8dc5",
-		"name": "Task Management API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "6528142"
-	},
-	"item": [
-		{
-			"name": "Task",
-			"item": [
-				{
-					"name": "Get a task as the task owner technician",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MjY0NCwiZXhwIjoxNjg0NTQ5MDQ0LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.f_4LyRoDaJpHqcIGHvy6FOBBbmJSSock6St8kIbynu6m_bU2Nc_0UZfx4_wpyBTJmEvZZYFQgbVo0PlSfKlHEHNiTIPO1AVB3ctdFKyTAusk6ivHgiaarcDa6rmRobhRCxmLHdwBhIsVRbOhwyYL4YuKq2lDKioAkNwfWY0HM_-4OdfawBZkwtl6VXKgSmzPso-AbOcCcawPTYpgY_jTVbeUt5HT6dfH5P1XPrJeZ8eLy9oncySOFxto4KJNTvOKs-ap3Aeomu3AFglr55EtrOWiTGUI6EBEmsSDfCE5hqbmMAC42JACsoBtEam9sBRb9sNdEYEgRqJFwXnPHm7peg",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get a task as a non-owner technician",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get a task as a manager",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add a task as a technician",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk2LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoiam9obmRvZSIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDU1NDI2MywiZXhwIjoxNjg0NjQwNjYzLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.qs6k8xcaUnO1QnhhKMYJfoj-kSA6ALbrRkhibW48SVAPMIAL2UBkIuFtWjh1rl5W3q6i3NzK1VGF2GrM1kprJ3jh1puVBp-Z7YvCVT3NF759nQeraCDrwU3RQmjMxj__-eATHs32TATbKcrMzEXem6zI7o8AhXyVD6X1WR3Lk6ayQwtoBS-jqDhBrbWDSwwsUaK5AYtJGLqWCTfWZjgHIII6efPZCufxaMz2g0FC_ACEj0zUgK5EuAp8PMlUokkHFvW1ZKNqXTABYCIJBqJn8F5p1O3i14qL9zu7ECPXa0LFVrADy6zk_2KlpK5VHZpyyBKfu5Qs7aH6AfQXzlZRiQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test task 1\",\n    \"summary\": \"Test task 1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add a task as a manager",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test task 2\",\n    \"summary\": \"Test task 2\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update a task as the task owner technician",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MzUzMSwiZXhwIjoxNjg0NTQ5OTMxLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.PC767-EwvlwZDxM5wibt83TwuRL3oGl1DGQRNaEVV2fxeI974iAmc-B5-22TDNQUV6ig67zsFnAEww7Pss7HXuQ-G62KsYWNK09XZwL__72ofbztWGLD0qvZeTlnr_stkOqG8rmE7i0b51LvY4mMpWGdle7G6C7MW2aAkTddumjvOK4SZ-OEEkkKBoUgITM6t7zYjmSIBJoP4ICQZHxFtf2h_osrVmkv-loUzItU4kn6mBVaPhVnUAdF3c0N_xrHm58HvBjt5EHW-ZGutY1vCCdMo1xduKWbL7xki5KXXyQtCdemmMlt970mlwcrwRWdpBrn1PpddB3Eouim42eTNw",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"status\": \"new\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update a task as a non-owner technician",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"status\": \"new\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update a task as a manager",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"status\": \"new\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Perform a task as the task owner technician",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MzUzMSwiZXhwIjoxNjg0NTQ5OTMxLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.PC767-EwvlwZDxM5wibt83TwuRL3oGl1DGQRNaEVV2fxeI974iAmc-B5-22TDNQUV6ig67zsFnAEww7Pss7HXuQ-G62KsYWNK09XZwL__72ofbztWGLD0qvZeTlnr_stkOqG8rmE7i0b51LvY4mMpWGdle7G6C7MW2aAkTddumjvOK4SZ-OEEkkKBoUgITM6t7zYjmSIBJoP4ICQZHxFtf2h_osrVmkv-loUzItU4kn6mBVaPhVnUAdF3c0N_xrHm58HvBjt5EHW-ZGutY1vCCdMo1xduKWbL7xki5KXXyQtCdemmMlt970mlwcrwRWdpBrn1PpddB3Eouim42eTNw",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"perform",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Perform a task as a non-owner technician",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"perform",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Perform a task as a manager",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"perform",
-								"b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a task as a manager",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDY0NTA2LCJleHAiOjE2ODQ1NTA5MDYsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.f3EnCP3qDUsX3_8EiW2wCZOvzUv54NcN_MkLWSVPYi22w3v4p6HwAUaGPqm4t3WvzBlr754KX9_Fzz30fKLb35Ujc2Y3MAFiYBBheGGRDyPMF8-bjQQfOwQ6l0-0skpdhfLowy1xmRIX_C_ch9GDPqwbGI-akZkEmhfTYwyCGveX_l9egGiT0DlKAyHsW74mvMNtnLCSMfZPZifttGHKR_3Ya91tDD4u2mWssuudXSswtRe1IYbel__WBQn-igll9ZGOhyXUk-P7h_0s67LzQqZ_ZoxqaKXtZnfQL8axN3cIORpPDmjtV6vhgftoyN4rFe90uUcya3E7sYL3eJyRiQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/5d4dd87e-042c-403a-bc20-bc7f13a8f093",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"5d4dd87e-042c-403a-bc20-bc7f13a8f093"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a task as a technician",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDY0NjAwLCJleHAiOjE2ODQ1NTEwMDAsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.AmW775YxWuovWCR4K6cquMGJy1nsEqjL8OGwDCSKoT8IrI3EdwkI02VkuWfElnIXIEtixeKL7bCiOcsUeXPLqSsl0t__e9mZ32F_wVKFrXCUl1TjQnuCQjSgizvYCMWuVonJa4014ZXYef1XrX-_OgiVIdPqYkJ5jKHgX4LlzVfIMLaDENiv4ydISGtkO2MI7HfOac71oK2DLtYhInhObF6hVVo8XC20rIlmKSJfKjF7yCU5KoiyzrqmfVjt5wVTFoLEDgahSftRykEufQNrfYIRzzBcsyImL6rRGdusJBmi-kxO5CvJvQxsZxCK3tH2aQ5xbjp2behbCqZJjPsPiw",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/5d4dd87e-042c-403a-bc20-bc7f13a8f093",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								"5d4dd87e-042c-403a-bc20-bc7f13a8f093"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List tasks as a technician",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk2LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoiam9obmRvZSIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDU1NTIxNywiZXhwIjoxNjg0NjQxNjE3LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.ishXN_5T1o6Z-ZTOYUa8t3h4sDZsJQyObCgZr9P63o2zHbUa0ncr933trzB20HL5g30hEKtyrMZLQh6eFy-VLG4NcH4VnXda26DUxPKmkiwsaSDkKf_VfeulNxpGKIYTVUP_HnW74kpw6JKI5CpjJ4QUVKzKFHUiFWe-ah2vR34323vvwGkb9wjUY_VjlVKk2ET5rvp8EMT79WL0dr8T9EHWi2T4KX-1sh7CHMteaczYYTv0WwG-7fA0L_lWDEPTyH8IrXbxdfbTcVKPbmbH8SVoSmUWUgSi-LtBjydC_JHhRiOovz8a-z6tsBQLrzshUuVj16_4CRKtxK8R9h3ATQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List tasks as a manager",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk0LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoieXZvbm5lbCIsInJvbGUiOiJtYW5hZ2VyIn0sImlhdCI6MTY4NDU0NzEwNSwiZXhwIjoxNjg0NjMzNTA1LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.KLUY8FoPW1DaL0cNzcDPv-0t0dqfkp8cfwSQ3t6jp4qlCLsoFQjmbCpUosd8StFnRZy-kSQsIyVP3wSKuzB_nLwmis1n-xP4hnTBfnDImjLfrUQoAjK7s1yIpXxH4cMVkqExnqQLe2PkSwY1svg0rQx8jx_W3epaTG-Q_HgSW9q1GKKnufQc4JNCEqccxrMBF_2rAn5id632FUxo5o3mxS_BR-XbOJoSOoL-pS9_A7g-r60skeUXA4u92F3eTJL172ICGeBW-tAkewXMD-UwLQtgi2FgykG--8t7jsUZyS1TQKhZBOr1QYSsP6HSnc2DrrnIt8tkAiSoMP8ZPn6NPg",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/api/tasks",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Sign Up",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"bryanf\",\n    \"password\": \"test\",\n    \"firstName\": \"Bryan\",\n    \"lastName\": \"Fong\",\n    \"role\": \"technician\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/signup",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sign In as a Manager",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"yvonnel\",\n    \"password\": \"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/signin",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sign In as a Technician",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"1234\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/signin",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sign Out",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDIxZmEzZjAtOWZhMC00YTM0LThmZDAtNTY2MjUwOTU0MWZmIiwidXNlcm5hbWUiOiJicnlhbmYiLCJyb2xlIjoidGVjaG5pY2lhbiJ9LCJpYXQiOjE2ODQzODk1MDIsImV4cCI6MTY4NDQ3NTkwMiwiYXVkIjoiaHR0cDovL2h0aW4uaW8iLCJpc3MiOiJIdGluIiwic3ViIjoic3ViamVjdEB0ZXN0LmNvbSJ9.EcPU2SuLlbFRUvf5PAFym1qWUQaybpW8FF0Rxdu9T19pvIciNSvsmG6zn7lWeUh7VyH0hjIr1qrGYro4djT1apFHJT1UC6gH6260E89YoMpZMZKqs52-xM5qyWabJi_INeklEMlnTmiMpjQN0YUlSLnUbEpPtE7fmj1_1GvUh7rhJvamkg9funtqPxx68cO1J14IXUS2zaALHhjmf0vciqibJblShqpAtwFQ-qEM3el-PS_MfMa_9zEOfLasCVC0c4lK-FWWV3dDimUXid7Ccn3fAJ0vuN_HJlEpLmmCmaFFlwHjl7-j2klp7pvCopLb3TBSGnX-7MbuB_vlsC-oCA",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/signout",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"signout"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+    "info": {
+        "_postman_id": "77667831-4bb5-4cee-b14a-82a1ed7f8dc5",
+        "name": "Task Management API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "6528142"
+    },
+    "item": [
+        {
+            "name": "Task",
+            "item": [
+                {
+                    "name": "Get a task as the task owner technician",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MjY0NCwiZXhwIjoxNjg0NTQ5MDQ0LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.f_4LyRoDaJpHqcIGHvy6FOBBbmJSSock6St8kIbynu6m_bU2Nc_0UZfx4_wpyBTJmEvZZYFQgbVo0PlSfKlHEHNiTIPO1AVB3ctdFKyTAusk6ivHgiaarcDa6rmRobhRCxmLHdwBhIsVRbOhwyYL4YuKq2lDKioAkNwfWY0HM_-4OdfawBZkwtl6VXKgSmzPso-AbOcCcawPTYpgY_jTVbeUt5HT6dfH5P1XPrJeZ8eLy9oncySOFxto4KJNTvOKs-ap3Aeomu3AFglr55EtrOWiTGUI6EBEmsSDfCE5hqbmMAC42JACsoBtEam9sBRb9sNdEYEgRqJFwXnPHm7peg",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a task as a non-owner technician",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a task as a manager",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add a task as a technician",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk2LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoiam9obmRvZSIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDU1NDI2MywiZXhwIjoxNjg0NjQwNjYzLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.qs6k8xcaUnO1QnhhKMYJfoj-kSA6ALbrRkhibW48SVAPMIAL2UBkIuFtWjh1rl5W3q6i3NzK1VGF2GrM1kprJ3jh1puVBp-Z7YvCVT3NF759nQeraCDrwU3RQmjMxj__-eATHs32TATbKcrMzEXem6zI7o8AhXyVD6X1WR3Lk6ayQwtoBS-jqDhBrbWDSwwsUaK5AYtJGLqWCTfWZjgHIII6efPZCufxaMz2g0FC_ACEj0zUgK5EuAp8PMlUokkHFvW1ZKNqXTABYCIJBqJn8F5p1O3i14qL9zu7ECPXa0LFVrADy6zk_2KlpK5VHZpyyBKfu5Qs7aH6AfQXzlZRiQ",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Test task 1\",\n    \"summary\": \"Test task 1\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "tasks"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add a task as a manager",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Test task 2\",\n    \"summary\": \"Test task 2\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "tasks"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update a task as the task owner technician",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MzUzMSwiZXhwIjoxNjg0NTQ5OTMxLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.PC767-EwvlwZDxM5wibt83TwuRL3oGl1DGQRNaEVV2fxeI974iAmc-B5-22TDNQUV6ig67zsFnAEww7Pss7HXuQ-G62KsYWNK09XZwL__72ofbztWGLD0qvZeTlnr_stkOqG8rmE7i0b51LvY4mMpWGdle7G6C7MW2aAkTddumjvOK4SZ-OEEkkKBoUgITM6t7zYjmSIBJoP4ICQZHxFtf2h_osrVmkv-loUzItU4kn6mBVaPhVnUAdF3c0N_xrHm58HvBjt5EHW-ZGutY1vCCdMo1xduKWbL7xki5KXXyQtCdemmMlt970mlwcrwRWdpBrn1PpddB3Eouim42eTNw",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"status\": \"new\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update a task as a non-owner technician",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"status\": \"new\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update a task as a manager",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"status\": \"new\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Perform a task as the task owner technician",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTUtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJyYW5kYWxsaCIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDQ2MzUzMSwiZXhwIjoxNjg0NTQ5OTMxLCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.PC767-EwvlwZDxM5wibt83TwuRL3oGl1DGQRNaEVV2fxeI974iAmc-B5-22TDNQUV6ig67zsFnAEww7Pss7HXuQ-G62KsYWNK09XZwL__72ofbztWGLD0qvZeTlnr_stkOqG8rmE7i0b51LvY4mMpWGdle7G6C7MW2aAkTddumjvOK4SZ-OEEkkKBoUgITM6t7zYjmSIBJoP4ICQZHxFtf2h_osrVmkv-loUzItU4kn6mBVaPhVnUAdF3c0N_xrHm58HvBjt5EHW-ZGutY1vCCdMo1xduKWbL7xki5KXXyQtCdemmMlt970mlwcrwRWdpBrn1PpddB3Eouim42eTNw",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "perform",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Perform a task as a non-owner technician",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDYzNzM3LCJleHAiOjE2ODQ1NTAxMzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.U6H3I8Gs52itMJDgifTuk_IlSMoLoXQ_ZV6-qfdPfKjXG_UKceZhqX0JdAiJ3s2AQupWJx_IXoUfYczaWYM2lDFdKMr0k3Jae3pY_3xGTwnbxOY1beotPeDSON4LEzoiCVPmKakAzziEXvisjgpdTCbQZie3Wd2LRa99r-x7FHJMKxZbyhWRh4KNnLKeV5XucADzAWBDzr-TMHtUrK-I-7FjL1X6AerW9MUq0G-C09pkYcUrtja024_-tUaQPxJf9TnHuioLs6PqYQgAgUdHgJWAZPMKGHYjjhDyFA0zj_uV8uEhupMHadccI_7ipeyGrnh507FOxfg-vr5hNxgVjQ",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "perform",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Perform a task as a manager",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDYyNzc3LCJleHAiOjE2ODQ1NDkxNzcsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.elqlc9lLjRSo65Uy9l17L9w_P503GYdeXt8fcJ3FJMVQ_745E7fAADvu53HVAfRlHbb_2Lw5ttO-jnK8T9NgRD3jDAGrM_XZYCoJd48rE85N4lzAk2T5dtFci0TCZ_CjcI-hzvZESlcd4uvh-ZirzJ0AEcVrYQiuYG8-Ta_-T6X0jYIwRUIYZx5fXKPjueHrseM-nskgWZSiN5bR4sV_sU9-WBVCqXDdG55Cb1YwX4ls7zGsAC86VLIBBVjU1AsLntMmdNKUpx4_vLx19Pl_J43qLIIFvYl8xGwO_kX2TdnfQuBvwDIT3HclOGxPRMGQmYay-Mw2fUKhUCNlHMkrww",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/perform/b61fae60-f5ea-11ed-9f7e-5fb260cad5cc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "perform",
+                                "b61fae60-f5ea-11ed-9f7e-5fb260cad5cc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete a task as a manager",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTQtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJ5dm9ubmVsIiwicm9sZSI6Im1hbmFnZXIifSwiaWF0IjoxNjg0NDY0NTA2LCJleHAiOjE2ODQ1NTA5MDYsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.f3EnCP3qDUsX3_8EiW2wCZOvzUv54NcN_MkLWSVPYi22w3v4p6HwAUaGPqm4t3WvzBlr754KX9_Fzz30fKLb35Ujc2Y3MAFiYBBheGGRDyPMF8-bjQQfOwQ6l0-0skpdhfLowy1xmRIX_C_ch9GDPqwbGI-akZkEmhfTYwyCGveX_l9egGiT0DlKAyHsW74mvMNtnLCSMfZPZifttGHKR_3Ya91tDD4u2mWssuudXSswtRe1IYbel__WBQn-igll9ZGOhyXUk-P7h_0s67LzQqZ_ZoxqaKXtZnfQL8axN3cIORpPDmjtV6vhgftoyN4rFe90uUcya3E7sYL3eJyRiQ",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/5d4dd87e-042c-403a-bc20-bc7f13a8f093",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "5d4dd87e-042c-403a-bc20-bc7f13a8f093"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete a task as a technician",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDc1NGZhOTYtZWZjNS0xMWVkLTgyODEtNGIwNDMyZWQxMThkIiwidXNlcm5hbWUiOiJqb2huZG9lIiwicm9sZSI6InRlY2huaWNpYW4ifSwiaWF0IjoxNjg0NDY0NjAwLCJleHAiOjE2ODQ1NTEwMDAsImF1ZCI6Imh0dHA6Ly9odGluLmlvIiwiaXNzIjoiSHRpbiIsInN1YiI6InN1YmplY3RAdGVzdC5jb20ifQ.AmW775YxWuovWCR4K6cquMGJy1nsEqjL8OGwDCSKoT8IrI3EdwkI02VkuWfElnIXIEtixeKL7bCiOcsUeXPLqSsl0t__e9mZ32F_wVKFrXCUl1TjQnuCQjSgizvYCMWuVonJa4014ZXYef1XrX-_OgiVIdPqYkJ5jKHgX4LlzVfIMLaDENiv4ydISGtkO2MI7HfOac71oK2DLtYhInhObF6hVVo8XC20rIlmKSJfKjF7yCU5KoiyzrqmfVjt5wVTFoLEDgahSftRykEufQNrfYIRzzBcsyImL6rRGdusJBmi-kxO5CvJvQxsZxCK3tH2aQ5xbjp2behbCqZJjPsPiw",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/5d4dd87e-042c-403a-bc20-bc7f13a8f093",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "tasks",
+                                "5d4dd87e-042c-403a-bc20-bc7f13a8f093"
+                            ],
+                            "query": [
+                                {
+                                    "key": "",
+                                    "value": "",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List tasks as a technician",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk2LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoiam9obmRvZSIsInJvbGUiOiJ0ZWNobmljaWFuIn0sImlhdCI6MTY4NDU1NTIxNywiZXhwIjoxNjg0NjQxNjE3LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.ishXN_5T1o6Z-ZTOYUa8t3h4sDZsJQyObCgZr9P63o2zHbUa0ncr933trzB20HL5g30hEKtyrMZLQh6eFy-VLG4NcH4VnXda26DUxPKmkiwsaSDkKf_VfeulNxpGKIYTVUP_HnW74kpw6JKI5CpjJ4QUVKzKFHUiFWe-ah2vR34323vvwGkb9wjUY_VjlVKk2ET5rvp8EMT79WL0dr8T9EHWi2T4KX-1sh7CHMteaczYYTv0WwG-7fA0L_lWDEPTyH8IrXbxdfbTcVKPbmbH8SVoSmUWUgSi-LtBjydC_JHhRiOovz8a-z6tsBQLrzshUuVj16_4CRKtxK8R9h3ATQ",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks/",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "tasks", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List tasks as a manager",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA3NTRmYTk0LWVmYzUtMTFlZC04MjgxLTRiMDQzMmVkMTE4ZCIsInVzZXJuYW1lIjoieXZvbm5lbCIsInJvbGUiOiJtYW5hZ2VyIn0sImlhdCI6MTY4NDU0NzEwNSwiZXhwIjoxNjg0NjMzNTA1LCJhdWQiOiJodHRwOi8vaHRpbi5pbyIsImlzcyI6Ikh0aW4iLCJzdWIiOiJzdWJqZWN0QHRlc3QuY29tIn0.KLUY8FoPW1DaL0cNzcDPv-0t0dqfkp8cfwSQ3t6jp4qlCLsoFQjmbCpUosd8StFnRZy-kSQsIyVP3wSKuzB_nLwmis1n-xP4hnTBfnDImjLfrUQoAjK7s1yIpXxH4cMVkqExnqQLe2PkSwY1svg0rQx8jx_W3epaTG-Q_HgSW9q1GKKnufQc4JNCEqccxrMBF_2rAn5id632FUxo5o3mxS_BR-XbOJoSOoL-pS9_A7g-r60skeUXA4u92F3eTJL172ICGeBW-tAkewXMD-UwLQtgi2FgykG--8t7jsUZyS1TQKhZBOr1QYSsP6HSnc2DrrnIt8tkAiSoMP8ZPn6NPg",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/tasks",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "tasks"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "Sign Up",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"bryanf\",\n    \"password\": \"test\",\n    \"firstName\": \"Bryan\",\n    \"lastName\": \"Fong\",\n    \"role\": \"technician\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/signup",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "auth", "signup"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Sign In as a Manager",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"yvonnel\",\n    \"password\": \"password\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/signin",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "auth", "signin"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Sign In as a Technician",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"1234\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/signin",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "auth", "signin"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Sign Out",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMDIxZmEzZjAtOWZhMC00YTM0LThmZDAtNTY2MjUwOTU0MWZmIiwidXNlcm5hbWUiOiJicnlhbmYiLCJyb2xlIjoidGVjaG5pY2lhbiJ9LCJpYXQiOjE2ODQzODk1MDIsImV4cCI6MTY4NDQ3NTkwMiwiYXVkIjoiaHR0cDovL2h0aW4uaW8iLCJpc3MiOiJIdGluIiwic3ViIjoic3ViamVjdEB0ZXN0LmNvbSJ9.EcPU2SuLlbFRUvf5PAFym1qWUQaybpW8FF0Rxdu9T19pvIciNSvsmG6zn7lWeUh7VyH0hjIr1qrGYro4djT1apFHJT1UC6gH6260E89YoMpZMZKqs52-xM5qyWabJi_INeklEMlnTmiMpjQN0YUlSLnUbEpPtE7fmj1_1GvUh7rhJvamkg9funtqPxx68cO1J14IXUS2zaALHhjmf0vciqibJblShqpAtwFQ-qEM3el-PS_MfMa_9zEOfLasCVC0c4lK-FWWV3dDimUXid7Ccn3fAJ0vuN_HJlEpLmmCmaFFlwHjl7-j2klp7pvCopLb3TBSGnX-7MbuB_vlsC-oCA",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/signout",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8080",
+                            "path": ["api", "auth", "signout"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
 }

@@ -5,7 +5,7 @@ const { user: UserModel } = require("../models");
 const config = require("../config/auth.config");
 const { RESOURCE_TYPES, ROLES_LIST } = require("../utils/resource_utils");
 const { HTTP_SUCCESSES, HTTP_ERRORS } = require("../utils/http_utils");
-const { logRequest, logRecord, logResponse } = require("../utils/logger_utils");
+const { logRequest, logRecord, logResponse, logError } = require("../utils/logger_utils");
 
 const { USER } = RESOURCE_TYPES;
 const { USER_REGISTRATION_SUCCESS, USER_SIGN_OUT_SUCCESS, OK } = HTTP_SUCCESSES;
@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
         statusCode = USER_REGISTRATION_SUCCESS.statusCode;
         resBody = USER_REGISTRATION_SUCCESS.getMessage();
     } catch (error) {
-        console.error(error);
+        logError(error);
         statusCode = INTERNAL_SERVER.statusCode;
         resBody = error.message || INTERNAL_SERVER.getMessage(USER);
     } finally {
@@ -95,7 +95,7 @@ const signIn = async (req, res) => {
             }
         }
     } catch (error) {
-        console.error(error);
+        logError(error);
         statusCode = INTERNAL_SERVER.statusCode;
         resBody = error.message || INTERNAL_SERVER.getMessage(USER, username);
     } finally {
@@ -118,7 +118,7 @@ const signOut = async (req, res) => {
         logResponse(statusCode, resBody, USER);
         return res.status(statusCode).send(resBody);
     } catch (error) {
-        console.error(error);
+        logError(error);
         this.next(error);
     }
 };

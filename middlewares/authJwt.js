@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const config = require("../config/auth.config");
 const { HTTP_ERRORS } = require("../utils/http_utils");
-const { logRequest, logResponse } = require("../utils/logger_utils");
+const { logRequest, logResponse, logError } = require("../utils/logger_utils");
 const { RESOURCE_TYPES } = require("../utils/resource_utils");
 
 const { UNAUTHORIZED, INTERNAL_SERVER } = HTTP_ERRORS;
@@ -36,7 +36,7 @@ const verifyToken = (req, res, next) => {
         req.user = decoded.user;
         next();
     } catch (error) {
-        console.error(error);
+        logError(error);
         statusCode = INTERNAL_SERVER.statusCode;
         resBody = error.message || INTERNAL_SERVER.getMessage();
         logResponse(statusCode, resBody, USER);

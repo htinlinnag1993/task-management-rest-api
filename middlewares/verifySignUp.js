@@ -5,6 +5,7 @@ const {
     logRequest,
     logRecord,
     logResponse,
+    logError,
 } = require("../utils/logger_utils");
 
 const { USER } = RESOURCE_TYPES;
@@ -34,7 +35,7 @@ const checkDuplicateUsername = async (req, res, next) => {
             next();
         }
     } catch (error) {
-        console.error(error);
+        logError(error);
         statusCode = INTERNAL_SERVER.statusCode;
         resBody = error.message || INTERNAL_SERVER.getMessage(USER, username);
         return res.status(statusCode).send(resBody);

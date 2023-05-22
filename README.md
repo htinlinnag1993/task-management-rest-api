@@ -65,8 +65,8 @@ REST API endpoint service for task-management app prototype.
 
 ## Authentication & Authorization:
 
--   Currently using JWT in combination with user-created username and password. A good alternative would be using a 3rd party SSO/authenticator such Google, etc. to avoid handling authentication and let the 3rd party service handle that.
--   Currently using authorization header with JWT and not storing JWT in any kind of session. The client can send the authorization JWT through authorization header. A better way would be using express-session and storing session on a datastore(preferrably key-value store such as Redis or MongoDB) on the server side.
+-   Currently using JWT in combination with user-created username and password. A good alternative would be using a 3rd party SSO/authenticator such Google, etc. to avoid maintaining authentication service and let the 3rd party service handle that.
+-   We are currently storing user sessions (JWT as a key & user id as the value) in our non-persistent in-memory key-value datastore (an object in `./dataStores/userSessionsWithJwt.js`). The client can send the authorization JWT through authorization header in the subsequent requests (after the initial login request), and we are validating/verifying the user session through a lookup in that in-memory datastore. A better way would be using express-session and storing session on a persistent datastore(preferrably key-value store such as Redis or MongoDB).
 
 ## Logging
 

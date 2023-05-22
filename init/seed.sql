@@ -44,7 +44,7 @@ VALUES
   (UUID(), 'Repair bathroom sink', 'new', 'Add sealant', '0754fa95-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Repair smoke detector', 'new', 'Change battery', '0754fa98-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Install walkway lamps', 'new', 'Install motion-sensored walkway lamps', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
-  (UUID(), 'Install watering system for the grass', 'new', 'Install auto-watering system for the frontyard', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
+  (UUID(), 'Install watering system for the grass', 'new', 'Install auto-wattaskering system for the frontyard', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Change LED UV bulbs', 'new', 'Change LED UV light bulbs for the plants', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Install badet', 'new', 'Install Japanese high-tech badet in the bathroom', '0754fa95-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Set up Wifi', 'new', 'Set up Wifi for Apt 15A', '0754fa97-efc5-11ed-8281-4b0432ed118d'),
@@ -52,3 +52,5 @@ VALUES
   (UUID(), 'Swap out AC unit', 'new', 'Swap out AC unit for Apt 10F', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Reset fob key readers', 'new', 'Reset fob key readers on all entrances', '0754fa96-efc5-11ed-8281-4b0432ed118d'),
   (UUID(), 'Inspect water filteration system', 'new', 'Inspect water filteration system', '0754fa93-efc5-11ed-8281-4b0432ed118d');
+
+		

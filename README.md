@@ -14,11 +14,11 @@ REST API endpoint service for task-management app prototype.
     - ```MYSQL_${env type}_PORT```
 3. Populate users and tasks in the local MySQL database manually. Refer to ```./init/seed.sql``` file for manual local testing through Postman in later step 6 & 7.
 4. Go to https://travistidwell.com/jsencrypt/demo/ and generate a pair of RSA private key and public key using **2048 bit** key size. Save each of them into its own file(private.key and public.key) under ```./config/keys/```.
-5. Run ```npm run dev``` to run the app locally.
+5. Run either ```npm run dev-with-split-log```(for logging logs & errors in 2 different local files) or ```npm run dev-with-log```(for logging logs & errors in the same one local file) to run the app locally with logging implemented.
 6. Try making api calls to the user endpoint(authentication/authorization: sign up, sign in and sign out) through Postman for manual local testing. Refer to the Postman collection attached: ```Task_Management_API.postman_collection.json```.
 7. Try making api calls to the task endpoint through Postman for manual local testing. Refer to the Postman collection attached: ```Task_Management_API.postman_collection.json```.
 8. Run ```npm run test``` to run automated unit testing suite. 
-9. Monitor the outputs on the terminal that is running this Express server app for logging info on the api requests and errors.
+9. Monitor the logs & outputs in either ```app.log``` or ```main.log``` & ```error.log``` in the project directory while our express app is running for info on the api requests, records, errors and responses.
 
 ## Main Features:
 - Letting the technician:
@@ -80,12 +80,13 @@ Currently, this rest api has a unit-test coverage on both success & fail cases f
   - Containerize the whole app with a couple of different services(MySQL, NodeJS server & MongoDB or Redis service) within the container.
 
 ### Extra for Scability, Readability, Maintability & Reusability of the Codebase & the System:
+- **Add Validation on the Request**: Add data validation on the incoming requests before processing the request using validator library such as **Joi**.
 - **JWT Authentication, Session Persistance & Invalidation**: 
-  - Adding a session key-value pair datastore such as MongoDB or Redis for this.
+  - Adding a session key-value pair datastore such as **MongoDB** or **Redis** for this.
 - **Database Seeding**: 
-  - Seed the database using factory design pattern programmatically to seed the database for testing.
+  - Seed the database using **factory design pattern programmatically** to seed the database for testing.
 - **Set up Linting, typescript & Pre-Commit/Pre-Submit Hooks on PullRequests for CI/CD**: 
   - Set up eslinting for code-styling, set up typescript support for type-checking and pre-Commit/pre-Submit hooks on pull requests for CI/CD. This static analysis will help us achieve less bugs, less runtime errors and less system runtime. We will have a better smoother CI/CD workflow and achieve higher availability in our system.
 - **Set Up Branch Protection Rules on Master Branch**: To protect master branch (and possibly future branches such as dev, pre-prod, etc.), set up rules & policies in place on GitHub for future collaboration.
-- **Document our REST API using Swagger**: Document all of our endpoints and API using Swagger.
+- **Document our REST API using Swagger**: Document all of our endpoints and API using **Swagger**.
 

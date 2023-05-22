@@ -100,7 +100,7 @@ Currently, this rest api has a unit-test coverage on both success & fail cases f
     -   Adding a session key-value pair datastore such as **MongoDB** or **Redis** for this.
 -   **Database Seeding**:
     -   Seed the database using **factory design pattern programmatically** to seed the database for testing.
--   **Set up Linting, typescript & Pre-Commit/Pre-Submit Hooks on PullRequests for CI/CD**:
-    -   Set up eslinting for code-styling, set up typescript support for type-checking and pre-Commit/pre-Submit hooks on pull requests for CI/CD. This static analysis will help us achieve less bugs, less runtime errors and less system runtime. We will have a better smoother CI/CD workflow and achieve higher availability in our system.
+-   **Set up typescript & Pre-Commit/Pre-Submit Hooks on PullRequests for CI/CD**:
+    -   Set up set up typescript support for type-checking and pre-Commit/pre-Submit hooks on pull requests for CI/CD. This static analysis will help us achieve less bugs, less runtime errors and less system runtime. We will have a better smoother CI/CD workflow and achieve higher availability in our system.
 -   **Set Up Branch Protection Rules on Master Branch**: To protect master branch (and possibly future branches such as dev, pre-prod, etc.), set up rules & policies in place on GitHub for future collaboration.
 -   **Document our REST API using Swagger**: Document all of our endpoints and API using **Swagger**.

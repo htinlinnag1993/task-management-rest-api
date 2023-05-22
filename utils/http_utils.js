@@ -19,6 +19,12 @@ const HTTP_SUCCESSES = {
             message: "You've been signed out!",
         }),
     },
+    USER_ALREADY_SIGNED_IN: {
+        statusCode: 200,
+        getMessage: () => ({
+            message: "You are already signed-in.",
+        }),
+    },
     UPDATE_SUCCESS: {
         statusCode: 200,
         getMessage: (resourceType) => ({
